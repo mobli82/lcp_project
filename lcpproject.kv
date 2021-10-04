@@ -1,25 +1,64 @@
-MainBoxLayout:
+MDBoxLayout:
+    orientation: "vertical"
+    
+    MDBottomNavigation:
+        # color settings
 
-<MainBoxLayout>:
-    GridLayout:
-        Label:
-            text: root.boiler_status
-            halign: 'right'
-            valign: 'middle'
-            pos: 300, 200
-            font_size: 22
+        MDBottomNavigationItem:
+            name: "Boiler Monitor"
+            text: "Monitor"
+            icon: "chart-line"
 
-        GridLayout:            
-            Button:
-                text: "RR"
-                size: 40,40
-                width: dp(80)
-                height: dp(80)
-                pos: 90, 500
-            
-            Button:
-                text: "Settings"
-                size: 40,40
-                width: dp(80)
-                height: dp(80)
-                pos: 170, 500
+            MDLabel:
+                text: "Wating for data...."
+                halign: 'center'
+                id: boiler_status
+
+        MDBottomNavigationItem:
+            name: "screnn 1"
+            text: "RR ALGO"
+            icon: "water-boiler-alert"
+
+            MDLabel:
+                text: "RR settings"
+                halign: 'center'
+                text_color: 0,0,1,1
+                
+                MDGridLayout:
+                    MDIconButton:
+                        icon: "minus-thick"
+                        user_font_size: "35dp"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                
+                    MDIconButton:
+                        icon: "minus-thick"
+                        user_font_size: "35dp"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                
+
+        MDBottomNavigationItem:
+            name: "settings"
+            text: "Boiler"
+            icon: "cog"
+
+            MDLabel:
+                text: "settings"
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: "settings"
+            text: "CWU"
+            icon: "shower"
+
+            MDLabel:
+                text: "settings"
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: "settings"
+            text: "Settings"
+            icon: "cog"
+
+            MDLabel:
+                text: "settings"
+                halign: 'center'
