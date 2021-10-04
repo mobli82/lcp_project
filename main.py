@@ -1,55 +1,31 @@
-from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.stacklayout import StackLayout
-from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.uix.widget import Widget
-from kivy.graphics.context_instructions import Color
-from kivy.properties import StringProperty, Clock
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivymd.icon_definitions import md_icons
 
 from utils import check_temparatures
+from kivy.properties import StringProperty, Clock
 
-import time
-from kivy.graphics.vertex_instructions import Rectangle
 
-class MainBoxLayout(Widget):
-    boiler_status = StringProperty("")
-    
+
+class MainApp(MDApp):
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.cols = 1
-        
         Clock.schedule_interval(self.update, 1)
 
-        self.bind(
-            size = self._update_rectangle,
-            pos = self._update_rectangle
-        )
-
-        with self.canvas.before:
-            Color(.21, .05, .30, 1)
-
-            self.rect = Rectangle(
-                pos = self.pos,
-                size = self.size
-            )
-
-    def _update_rectangle(self, insatnce, value):
-        self.rect.size = insatnce.size
-        self.rect.pos = insatnce.pos
-
-
     def update(self, dt):
-        _, _, rest_tem = check_temparatures()
+        _, _, temps = check_temparatures()
+        
+        boiler_status = MainApp.get_running_app().root.ids['boiler_status']
 
-        self.boiler_status = rest_tem
+        print(type(temps))
 
-    pass
-   
-class LcpProject(App):
-    pass
+        boiler_status.text = temps
+    
+    def build(self):
+        self.theme_cls.theme_style = 'Dark'
+        self.theme_cls.primary_palette = 'LightGreen'
+        return Builder.load_file('lcpproject.kv')
 
-
-
-LcpProject().run()
+MainApp().run() 

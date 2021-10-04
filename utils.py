@@ -60,4 +60,6 @@ def check_temparatures():
 
     # print(temp_boiler, temp_feeder)
     
+    # print(temperatures)
+
     return temp_boiler, temp_feeder, temperatures
