@@ -19,8 +19,6 @@ class MainApp(MDApp):
         
         boiler_status = MainApp.get_running_app().root.ids['boiler_status']
 
-        print(type(temps))
-
         boiler_status.text = temps
     
     def build(self):
