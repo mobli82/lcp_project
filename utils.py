@@ -1,4 +1,5 @@
 import requests
+import json
 
 SENSORS = ['BOILER', 'BOILERS_RETURN', 'FEEDER', ' ', ' ', 'CWU', ' ', ' ', 'CO', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
@@ -11,7 +12,10 @@ def server_response():
     """
     data = requests.get('http://192.168.1.2/t.json')
     
-    json_data = data.json()
+    # used json.loads instade data.json()
+    json_data = json.loads(data.text)
+
+    # print(type(json_data))
 
     if data.status_code == 200 and json_data is not None:
         return json_data
