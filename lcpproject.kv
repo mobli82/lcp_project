@@ -1,4 +1,9 @@
-MDBoxLayout:
+#:set left_alain_100 dp(110)
+#:set left_alain_200 dp(210)
+#:set left_alain_260 dp(270)
+#:set left_alain_280 dp(290)
+
+MainView:
     orientation: "vertical"
     
     MDBottomNavigation:
@@ -9,37 +14,95 @@ MDBoxLayout:
             text: "Monitor"
             icon: "chart-line"
 
-            MDLabel:
-                text: "Wating for data...."
-                halign: 'center'
-                id: boiler_status
+            MDBoxLayout:
+                MDLabel:
+                    text: "Wating for data...."
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'middle'
+                    id: boiler_status
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
 
         MDBottomNavigationItem:
             name: "screnn 1"
             text: "RR ALGO"
-            icon: "water-boiler-alert"
+            icon: "cog-counterclockwise"
+    
+            MDGridLayout:
+                MDLabel:
+                    text: "RR_PRACA_PODANIE"
+                    text_size: self.size
+                    pos: left_alain_100, 400
 
-            MDLabel:
-                text: "RR settings"
-                halign: 'center'
-                text_color: 0,0,1,1
+                MDLabel:
+                    text: "RR_PRACA_POSTOJ"
+                    text_size: self.size
+                    pos: left_alain_100, 350
                 
-                MDGridLayout:
-                    MDIconButton:
-                        icon: "minus-thick"
-                        user_font_size: "35dp"
-                        pos_hint: {"center_x": .5, "center_y": .5}
+                MDLabel:
+                    text: "RR_PRACA_MOC"
+                    text_size: self.size
+                    pos: left_alain_100, 300
+
+                MDIconButton:
+                    icon: "minus-thick"
+                    user_font_size: "35dp"
+                    pos: left_alain_200, 400
+                    on_press: root.upgrade_value(self)
+            
+                MDIconButton:
+                    icon: "minus-thick"
+                    user_font_size: "35dp"
+                    pos: left_alain_200, 350
+                    on_press: root.upgrade_value(self)
                 
-                    MDIconButton:
-                        icon: "minus-thick"
-                        user_font_size: "35dp"
-                        pos_hint: {"center_x": .5, "center_y": .5}
+                MDIconButton:
+                    icon: "minus-thick"
+                    user_font_size: "35dp"
+                    pos: left_alain_200, 300
+                    on_press: root.upgrade_value(self)
                 
+                MDLabel:
+                    text: "10"
+                    id: RR_PRACA_PODANIE
+                    text_size: self.size
+                    pos: left_alain_260, 420
+
+                MDLabel:
+                    text: "20"
+                    id: RR_PRACA_POSTOJ
+                    text_size: self.size
+                    pos: left_alain_260, 370
+                
+                MDLabel:
+                    text: "30"
+                    id: RR_PRACA_MOC
+                    text_size: self.size
+                    pos: left_alain_260, 320
+                
+                MDIconButton:
+                    icon: "plus-thick"
+                    user_font_size: "35dp"
+                    pos: left_alain_280, 400
+                    on_press: root.upgrade_value(self)
+            
+                MDIconButton:
+                    icon: "plus-thick"
+                    user_font_size: "35dp"
+                    pos: left_alain_280, 350
+                    on_press: root.upgrade_value(self)
+
+                MDIconButton:
+                    icon: "plus-thick"
+                    user_font_size: "35dp"
+                    pos: left_alain_280, 300
+                    on_press: root.upgrade_value(self)
 
         MDBottomNavigationItem:
             name: "settings"
             text: "Boiler"
-            icon: "cog"
+            icon: "cog-transfer-outline"
 
             MDLabel:
                 text: "settings"

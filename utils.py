@@ -13,7 +13,7 @@ def server_response():
     data = requests.get('http://192.168.1.2/t.json')
     
     # used json.loads instade data.json()
-    json_data = json.loads(data.text)
+    json_data = json.loads(data.text, encoding='utf-8')
 
     # print(type(json_data))
 
@@ -31,6 +31,7 @@ def json_data_validator():
         [boiler_and_feeder_temps]: dict with boiler and feeder temp
         [boiler_ststus]: f-string with all bolier's sensors
     """
+    WIDTH = 40
     json_data = server_response()
 
     boiler_status = ''
@@ -43,7 +44,7 @@ def json_data_validator():
             continue
         else:
             boiler_and_feeder_temps[SENSORS[index]] = data['t']
-            boiler_status += f'{SENSORS[index]}:    {data["t"]} \n'
+            boiler_status += SENSORS[index] + ':' + '    ' + str(data["t"]) + '\n'
         
     return boiler_status, boiler_and_feeder_temps
 
