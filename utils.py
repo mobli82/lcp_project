@@ -10,11 +10,14 @@ def server_response():
     Returns:
         [json data type]: [boiler's tempartures in json data type]
     """
-    data = requests.get('http://192.168.1.2/t.json')
-    
-    # used json.loads instade data.json()
-    json_data = json.loads(data.text, encoding='utf-8')
+    try:
 
+        data = requests.get('http://192.168.1.2/t.json')
+        
+        # used json.loads instade data.json()
+        json_data = json.loads(data.text, encoding='utf-8')
+    except ValueError:
+        pass
     # print(type(json_data))
 
     if data.status_code == 200 and json_data is not None:
