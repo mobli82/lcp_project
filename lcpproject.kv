@@ -1,4 +1,6 @@
-MDBoxLayout:
+MainView:
+
+<MainView>:
     orientation: "vertical"
     
     MDBottomNavigation:
@@ -9,37 +11,124 @@ MDBoxLayout:
             text: "Monitor"
             icon: "chart-line"
 
-            MDLabel:
-                text: "Wating for data...."
-                halign: 'center'
-                id: boiler_status
+            MDBoxLayout:
+                orientation: "vertical"
+                MDLabel:    
+                    text: "Conected success"
+                    id: connection_status
+                    font_style: "Button"
+                    size_hint_y: .1
+                    halign: "auto"
+                    #valign: 'bottom'
+                    #padding: [10,0]
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 0,
+                    pos: 10, 500
+
+
+                MDLabel:
+                    #padding: [0,0]
+                    font_style: "Body1"
+                    text: "Wating for data...."    
+                    #text_size: (50, 50)
+                    #widget_position: "right"
+                    #title_position: "right_top"
+                    halign: 'left'
+                    #valign: 'middle'
+                    id: boiler_status
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
+                    #pos: 300, 300
 
         MDBottomNavigationItem:
             name: "screnn 1"
             text: "RR ALGO"
-            icon: "water-boiler-alert"
+            icon: "cog-counterclockwise"
 
-            MDLabel:
-                text: "RR settings"
-                halign: 'center'
-                text_color: 0,0,1,1
-                
-                MDGridLayout:
-                    MDIconButton:
-                        icon: "minus-thick"
-                        user_font_size: "35dp"
-                        pos_hint: {"center_x": .5, "center_y": .5}
-                
-                    MDIconButton:
-                        icon: "minus-thick"
-                        user_font_size: "35dp"
-                        pos_hint: {"center_x": .5, "center_y": .5}
-                
+            MDGridLayout:
+                cols: 3
+                MDBoxLayout:
+                    orientation: "vertical"
+                    StackLayout:
 
+                        MDLabel:
+                            text: "RR PRACA PODANIE"
+                            id: RR_PRACA_PODANIE_LABEL
+                            size_hint: .7, .2
+                        
+                        MDLabel:
+                            text: "RR PRACA POSTOJ"
+                            id: RR_PRACA_POSTOJ_LABEL
+                            size_hint: .7, .2
+
+                        MDLabel:
+                            text: "RR PRACA MOC"
+                            id: RR_PRACA_MOC_LABEL
+                            size_hint: .7, .2
+                    
+                MDBoxLayout:
+                    orientation: "vertical"  
+                    spacing: 20
+
+                    StackLayout:
+                        MDTextField:
+                            text: "10"
+                            id: RR_PRACA_PODANIE
+                            multiline: False
+                            size_hint: .7, .2
+                        
+                        MDTextField:
+                            text: "20"
+                            id: RR_PRACA_POSTOJ
+                            multiline: False
+                            size_hint: .7, .2
+
+                        MDTextField:
+                            text: "30"
+                            id: RR_PRACA_MOC
+                            multiline: False
+                            size_hint: .7, .2
+                
+                MDBoxLayout: 
+
+                    GridLayout:
+                        cols: 1
+                        spacing: 10, 15
+                        padding: 10, 10
+
+                        MDRoundFlatButton:
+                            text: "update"
+                            size_hint: None, None
+                            width: 40
+                            heigh: 40
+                            user_font_size: "35dp"
+                            on_press: root.upgrade_value(RR_PRACA_PODANIE, RR_PRACA_PODANIE_LABEL)             
+                    
+                        MDRoundFlatButton:
+                            text: "update"
+                            size_hint: None, None
+                            width: 40
+                            heigh: 40
+                            user_font_size: "35dp"
+                            on_press: root.upgrade_value(RR_PRACA_POSTOJ, RR_PRACA_POSTOJ_LABEL)                
+
+                        MDRoundFlatButton:
+                            text: "update"
+                            size_hint: None, None
+                            width: 40
+                            heigh: 40
+                            user_font_size: "35dp"
+                            on_press: root.upgrade_value(RR_PRACA_MOC, RR_PRACA_MOC_LABEL)
+                
+                MDLabel:
+                    text: "aaa"
+                    id: server_response
+                    text_size: self.size
+                            
         MDBottomNavigationItem:
             name: "settings"
             text: "Boiler"
-            icon: "cog"
+            icon: "cog-transfer-outline"
 
             MDLabel:
                 text: "settings"
