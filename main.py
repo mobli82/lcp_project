@@ -7,6 +7,8 @@ from kivymd.icon_definitions import md_icons
 from utils import check_temparatures
 from kivy.properties import StringProperty, Clock
 
+from functools import partial
+
 import requests
 
 import time
@@ -14,9 +16,8 @@ import time
 class MainView(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
         Clock.schedule_interval(self.update, 1)
-        #Clock.schedule_once(self.hide_server_record_label, 1)
+
 
     def update(self, dt):
         _, _, temps = check_temparatures()
@@ -33,10 +34,19 @@ class MainView(MDBoxLayout):
         
         server_response = self.ids.server_response
 
-        print(key, value)
-        r = requests.get(f'http://192.168.1.2/set{key}={value}')
+        print(f'Key: {key}, value: {value}')
+        
+        if key and value:
+            r = requests.get(f'http://192.168.1.2/set{key}={value}')
 
         server_response.text = 'Record Upgraded'
+
+        Clock.schedule_once(self.hide_server_record_label, 2)
+    
+    def hide_server_record_label(self, dt):
+        server_response = self.ids.server_response
+        server_response.text = " "
+
 
 class MainApp(MDApp):
     def build(self):
