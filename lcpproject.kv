@@ -8,7 +8,8 @@ MainView:
             text: " "
             id: server_response
             text_size: self.size
-            text_color: 1, 0, 1, 1
+            theme_text_color: "Custom"
+            text_color: 0, 1, 0, 1
             halign: 'center'
 
     MDBottomNavigation:
@@ -21,32 +22,91 @@ MainView:
 
             MDBoxLayout:
                 orientation: "vertical"
-                MDLabel:    
-                    text: "Conected success"
-                    id: connection_status
-                    font_style: "Button"
-                    size_hint_y: .1
-                    halign: "auto"
-                    #valign: 'bottom'
-                    #padding: [10,0]
-                    theme_text_color: "Custom"
-                    text_color: 0, 1, 0,
-                    pos: 10, 500
 
+                MDBoxLayout:
+                    MDLabel:    
+                        text: "Conected OK"
+                        id: connection_status
+                        font_style: "Button"
+                        size_hint_y: 1
+                        halign: "auto"
+                        #valign: 'bottom'
+                        #padding: [10,0]
+                        theme_text_color: "Custom"
+                        text_color: 0, 1, 0, 1
 
-                MDLabel:
-                    #padding: [0,0]
-                    font_style: "Body1"
-                    text: "Wating for data...."    
-                    #text_size: (50, 50)
-                    #widget_position: "right"
-                    #title_position: "right_top"
-                    halign: 'left'
-                    #valign: 'middle'
-                    id: boiler_status
-                    theme_text_color: "Custom"
-                    text_color: 0, 1, 1, 1
-                    #pos: 300, 300
+                MDBoxLayout:
+                    MDBoxLayout
+                        orientation: "vertical"
+                        size_hint_x: .6
+                        padding: 50, 0, 0, 0
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "BOILER TEMPERATURE"
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 1, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "BOILERS RETURN"
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 1, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "FEEDER"
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 1, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "CWU"
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 1, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "CO"
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 1, 1
+                    # temperatures
+                    MDBoxLayout
+                        orientation: "vertical"
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "0"
+                            id: BOILER_TEMPERATURE    
+                            halign: 'left'
+                            valign: 'middle'
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 0, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "1"
+                            id: BOILERS_RETURN
+                            halign: 'left'
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 0, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "2"
+                            id: FEEDER    
+                            halign: 'left'
+                            valign: 'middle'
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 0, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "3"
+                            id: CWU    
+                            halign: 'left'
+                            valign: 'middle'
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 0, 1
+                        MDLabel:
+                            font_style: "Body1"
+                            text: "4"
+                            id: CO    
+                            halign: 'left'
+                            valign: 'middle'
+                            theme_text_color: "Custom"
+                            text_color: 0, 1, 0, 1
 
         MDBottomNavigationItem:
             name: "rr_algo"
@@ -58,82 +118,67 @@ MainView:
                 MDBoxLayout:
                     orientation: "vertical"
                     StackLayout:
-
                         MDLabel:
                             text: "RR PRACA PODANIE"
                             id: RR_PRACA_PODANIE_LABEL
                             size_hint: .7, .1
-                        
                         MDLabel:
                             text: "RR PRACA POSTOJ"
                             id: RR_PRACA_POSTOJ_LABEL
                             size_hint: .7, .1
-
                         MDLabel:
                             text: "RR PRACA MOC"
                             id: RR_PRACA_MOC_LABEL
                             size_hint: .7, .1
-
                         MDLabel:
                             text: "RR PODTRZYMANIE CZAS"
                             id: RR_PODTRZYMANIE_CZAS_LABEL
                             size_hint: .7, .1
-                        
                         MDLabel:
                             text: "RR PODTRZYMANIE PODANIE"
                             id: RR_PODTRZYMANIE_PODANIE_LABEL
                             size_hint: .7, .1
-                        
                         MDLabel:
                             text: "RR PODTRZYMANIE POSTOJ"
                             id: RR_PODTRZYMANIE_POSTOJ_LABEL
                             size_hint: .7, .1
-                        
                         MDLabel:
                             text: "RR PODTRZYMANIE MOC"
                             id: RR_PODTRZYMANIE_MOC_LABEL
                             size_hint: .7, .1
-                        
                         MDLabel:
                             text: "RR PODTRZYMANIE CZAS LATO"
                             id: RR_PODTRZYMANIE_CZAS_LATO_LABEL
                             size_hint: .7, .1
-
                 MDBoxLayout:
                     orientation: "vertical"  
                     spacing: 20
-
                     StackLayout:
                         MDTextField:
                             text: "10"
                             id: RR_PRACA_PODANIE
                             multiline: False
                             size_hint: .7, .1
-                        
                         MDTextField:
                             text: "20"
                             id: RR_PRACA_POSTOJ
                             multiline: False
                             size_hint: .7, .1
-
                         MDTextField:
                             text: "30"
                             id: RR_PRACA_MOC
                             multiline: False
                             size_hint: .7, .1
-                        
                         MDTextField:
                             text: "0"
                             id: RR_PODTRZYMANIE_CZAS
                             multiline: False
                             size_hint: .7, .1
-                        
                         MDTextField:
                             text: "0"
                             id: RR_PODTRZYMANIE_PODANIE
                             multiline: False
                             size_hint: .7, .1
-                        
                         MDTextField:
                             text: "0"
                             id: RR_PODTRZYMANIE_POSTOJ
@@ -145,35 +190,28 @@ MainView:
                             id: RR_PODTRZYMANIE_MOC
                             multiline: False
                             size_hint: .7, .1
-                        
                         MDTextField:
                             text: "0"
                             id: RR_PODTRZYMANIE_CZAS_LATO
                             multiline: False
                             size_hint: .7, .1
-                
-                MDBoxLayout: 
-
+                MDBoxLayout:
                     GridLayout:
                         cols: 1
                         spacing: 10, 15
                         padding: 10, 10
-
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PRACA_PODANIE, RR_PRACA_PODANIE_LABEL)             
-                    
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PRACA_POSTOJ, RR_PRACA_POSTOJ_LABEL)                
-
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PRACA_MOC, RR_PRACA_MOC_LABEL)
-                        
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
@@ -183,22 +221,18 @@ MainView:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PODTRZYMANIE_PODANIE, RR_PODTRZYMANIE_PODANIE_LABEL)
-
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PODTRZYMANIE_POSTOJ, RR_PODTRZYMANIE_POSTOJ_LABEL)
-                        
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PODTRZYMANIE_MOC, RR_PODTRZYMANIE_MOC_LABEL)
-                        
                         MDRoundFlatButton:
                             text: "update"
                             user_font_size: "35dp"
                             on_press: root.upgrade_value(RR_PODTRZYMANIE_CZAS_LATO, RR_PODTRZYMANIE_CZAS_LATO_LABEL)
-
         MDBottomNavigationItem:
             name: "boiler"
             text: "Boiler"
@@ -246,18 +280,14 @@ MainView:
                 MDBoxLayout:
                     orientation: "vertical"
                     #StackLayout:
-                    
                     MDBoxLayout:
                         orientation: "horizontal"
-                        
                         size_hint_y: .1
                         pos_hint: {"top": 1, "left": 1}
-
                         MDRoundFlatButton:
                             text: "CIAGLY"
                             id: CIAGLY
-                            on_press: root.upgrade_value(self, CYRKULACJA_ALGORYTM_LABEL) 
-                        
+                            on_press: root.upgrade_value(self, CYRKULACJA_ALGORYTM_LABEL)                        
                         MDRoundFlatButton:
                             text: "CYKLICZNY"
                             id: CYKLICZNY
@@ -267,14 +297,11 @@ MainView:
                             text: "WYLACZONY"
                             id: WYLACZONY
                             on_press: root.upgrade_value(self, CYRKULACJA_ALGORYTM_LABEL) 
-
                     MDBoxLayout:
                         orientation: "vertical"
                         size_hint_y: .9
                         #md_bg_color: app.theme_cls.primary_color
-
-                        StackLayout:
-                                        
+                        StackLayout:                           
                             MDTextField:
                                 text: "30"
                                 id: CYRKULACJA_TMIN_INPUT

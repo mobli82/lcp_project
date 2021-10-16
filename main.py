@@ -16,17 +16,25 @@ import time
 class MainView(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        Clock.schedule_interval(self.update, 1)
+        Clock.schedule_interval(self.update_temps, 1)
 
 
-    def update(self, dt):
-        _, _, temps = check_temparatures()
+    def update_temps(self, dt):
+        bolier_temp, boiler_return, feeder, cwu, co = check_temparatures()
         
-        boiler_status = MDApp.get_running_app().root.ids['boiler_status']
-
-        # print(type(temps))
-
-        boiler_status.text = temps
+        # print(MDApp.get_running_app().root.ids)
+        BOILER_TEMPERATURE = MDApp.get_running_app().root.ids['BOILER_TEMPERATURE']
+        BOILERS_RETURN = MDApp.get_running_app().root.ids['BOILERS_RETURN']
+        FEEDER = MDApp.get_running_app().root.ids['FEEDER']
+        CWU = MDApp.get_running_app().root.ids['CWU']
+        CO = MDApp.get_running_app().root.ids['CO']
+        
+        BOILER_TEMPERATURE.text = str(bolier_temp)
+        BOILERS_RETURN.text = str(boiler_return)
+        FEEDER.text = str(feeder)
+        CWU.text = str(cwu)
+        CO.text = str(co)
+        
 
     def upgrade_value(self, widget_input, widget_label):
         value = widget_input.text
