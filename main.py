@@ -13,29 +13,35 @@ import requests
 
 import time
 
-class MainView(MDBoxLayout):
+class RRalgorythmView(MDBoxLayout):
+    pass
+
+class CwuCycleView(MDBoxLayout):
+    pass
+
+class BoilerMonitorView(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_interval(self.update_temps, 1)
 
-
     def update_temps(self, dt):
-        bolier_temp, boiler_return, feeder, cwu, co = check_temparatures()
+        bolier_temp, boiler_return_temp, feeder_temp, cwu_temp, co_temp = check_temparatures()
         
-        # print(MDApp.get_running_app().root.ids)
-        BOILER_TEMPERATURE = MDApp.get_running_app().root.ids['BOILER_TEMPERATURE']
-        BOILERS_RETURN = MDApp.get_running_app().root.ids['BOILERS_RETURN']
-        FEEDER = MDApp.get_running_app().root.ids['FEEDER']
-        CWU = MDApp.get_running_app().root.ids['CWU']
-        CO = MDApp.get_running_app().root.ids['CO']
+        print(BoilerMonitorView().ids)
+        boiler_temperature = self.ids.BOILER_TEMPERATURE
+        boiler_return = self.ids.BOILERS_RETURN
+        feeder = self.ids.FEEDER
+        cwu = self.ids.CWU
+        co = self.ids.CO
         
-        BOILER_TEMPERATURE.text = str(bolier_temp)
-        BOILERS_RETURN.text = str(boiler_return)
-        FEEDER.text = str(feeder)
-        CWU.text = str(cwu)
-        CO.text = str(co)
-        
+        boiler_temperature.text = str(bolier_temp)
+        boiler_return.text = str(boiler_return_temp)
+        feeder.text = str(feeder_temp)
+        cwu.text = str(cwu_temp)
+        co.text = str(co_temp)
 
+class MainView(MDBoxLayout):
+    
     def upgrade_value(self, widget_input, widget_label):
         value = widget_input.text
         key = widget_label.text
@@ -54,7 +60,6 @@ class MainView(MDBoxLayout):
     def hide_server_record_label(self, dt):
         server_response = self.ids.server_response
         server_response.text = " "
-
 
 class MainApp(MDApp):
     def build(self):

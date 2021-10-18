@@ -1,0 +1,105 @@
+
+<CwuCycleView>:
+    MDGridLayout:
+        cols: 3
+        #col 1
+        MDBoxLayout:
+            orientation: "vertical"
+            #md_bg_color: app.theme_cls.primary_color
+            StackLayout:
+
+                MDLabel:
+                    text: "CYRKULACJA_ALGORYTM"
+                    id: CYRKULACJA_ALGORYTM_LABEL
+                    size_hint: .7, .1
+                MDLabel:
+                    text: "CYRKULACJA_TMIN"
+                    id: CYRKULACJA_TMIN_LABEL
+                    size_hint: .7, .1
+
+                MDLabel:
+                    text: "CYRKULACJA_CZAS_WLACZ"
+                    id: CYRKULACJA_CZAS_WLACZ_LABEL
+                    size_hint: .7, .1
+
+                MDLabel:
+                    text: "CYRKULACJA_CZASWYLACZ"
+                    id: CYRKULACJA_CZAS_WYLACZ_LABEL
+                    size_hint: .7, .1
+        #col 2
+        MDBoxLayout:
+            orientation: "vertical"
+            #Cycle Buttons
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .1
+                pos_hint: {"top": 1, "left": 1}
+                MDRoundFlatButton:
+                    text: "CIAGLY"
+                    id: CIAGLY
+                    on_press: app.root.upgrade_value(self, CYRKULACJA_ALGORYTM_LABEL)                        
+                MDRoundFlatButton:
+                    text: "CYKLICZNY"
+                    id: CYKLICZNY
+                    on_press: app.root.upgrade_value(self, CYRKULACJA_ALGORYTM_LABEL)
+                
+                MDRoundFlatButton:
+                    text: "WYLACZONY"
+                    id: WYLACZONY
+                    on_press: app.root.upgrade_value(self, CYRKULACJA_ALGORYTM_LABEL) 
+                    
+            #Cycle Text Inputs
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: .9
+                #
+                StackLayout:                           
+                    MDTextField:
+                        text: "30"
+                        id: CYRKULACJA_TMIN_INPUT
+                        multiline: False
+                        size_hint_x: .51
+
+                    MDTextField:
+                        text: "1"
+                        size_hint_x: .51
+                        id: CYRKULACJA_CZAS_WLACZ_INPUT
+                        multiline: False
+                    
+                    MDTextField:
+                        text: "10"
+                        size_hint_x: .51
+                        id: CYRKULACJA_CZAS_WYLACZ_INPUT
+                        multiline: False
+        #col 3
+        MDBoxLayout:
+            # CWU cycle Buttons                    
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint: None, None
+                pos_hint: {"top": .82}
+                spacing: 12
+
+                MDRoundFlatButton:
+                    text: "update"
+                    size_hint: None, None
+                    width: 40
+                    heigh: 40
+                    user_font_size: "35dp"
+                    #on_press: root.upgrade_value(RR_PRACA_POSTOJ, RR_PRACA_POSTOJ_LABEL)                
+
+                MDRoundFlatButton:
+                    text: "update"
+                    size_hint: None, None
+                    width: 40
+                    heigh: 40
+                    user_font_size: "35dp"
+                    #on_press: root.upgrade_value(RR_PRACA_MOC, RR_PRACA_MOC_LABEL)
+                
+                MDRoundFlatButton:
+                    text: "update"
+                    size_hint: None, None
+                    width: 40
+                    heigh: 40
+                    user_font_size: "35dp"
+                    #on_press: root.upgrade_value(RR_PRACA_MOC, RR_PRACA_MOC_LABEL)
