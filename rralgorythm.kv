@@ -1,0 +1,123 @@
+<RRalgorythmView>:
+    MDBoxLayout:
+        orientation: "vertical"
+        StackLayout:
+            #Labels
+            MDLabel:
+                text: "RR PRACA PODANIE"
+                id: RR_PRACA_PODANIE_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PRACA POSTOJ"
+                id: RR_PRACA_POSTOJ_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PRACA MOC"
+                id: RR_PRACA_MOC_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PODTRZYMANIE CZAS"
+                id: RR_PODTRZYMANIE_CZAS_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PODTRZYMANIE PODANIE"
+                id: RR_PODTRZYMANIE_PODANIE_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PODTRZYMANIE POSTOJ"
+                id: RR_PODTRZYMANIE_POSTOJ_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PODTRZYMANIE MOC"
+                id: RR_PODTRZYMANIE_MOC_LABEL
+                size_hint: .7, .1
+            MDLabel:
+                text: "RR PODTRZYMANIE CZAS LATO"
+                id: RR_PODTRZYMANIE_CZAS_LATO_LABEL
+                size_hint: .7, .1
+    MDBoxLayout:
+        orientation: "vertical"  
+        spacing: 20
+        
+        #Text Inputs
+        StackLayout:
+            MDTextField:
+                text: "10"
+                id: RR_PRACA_PODANIE
+                multiline: False
+                size_hint: .7, .1
+            MDTextField:
+                text: "20"
+                id: RR_PRACA_POSTOJ
+                multiline: False
+                size_hint: .7, .1
+            MDTextField:
+                text: "30"
+                id: RR_PRACA_MOC
+                multiline: False
+                size_hint: .7, .1
+            MDTextField:
+                text: "0"
+                id: RR_PODTRZYMANIE_CZAS
+                multiline: False
+                size_hint: .7, .1
+            MDTextField:
+                text: "0"
+                id: RR_PODTRZYMANIE_PODANIE
+                multiline: False
+                size_hint: .7, .1
+            MDTextField:
+                text: "0"
+                id: RR_PODTRZYMANIE_POSTOJ
+                multiline: False
+                size_hint: .7, .1
+
+            MDTextField:
+                text: "0"
+                id: RR_PODTRZYMANIE_MOC
+                multiline: False
+                size_hint: .7, .1
+            MDTextField:
+                text: "0"
+                id: RR_PODTRZYMANIE_CZAS_LATO
+                multiline: False
+                size_hint: .7, .1
+    # Buttons
+    MDBoxLayout:
+        GridLayout:
+            cols: 1
+            spacing: 10, 15
+            padding: 10, 10
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PRACA_PODANIE, RR_PRACA_PODANIE_LABEL)             
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PRACA_POSTOJ, RR_PRACA_POSTOJ_LABEL)                
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PRACA_MOC, RR_PRACA_MOC_LABEL)
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PODTRZYMANIE_CZAS, RR_PODTRZYMANIE_CZAS_LABEL)
+            
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PODTRZYMANIE_PODANIE, RR_PODTRZYMANIE_PODANIE_LABEL)
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PODTRZYMANIE_POSTOJ, RR_PODTRZYMANIE_POSTOJ_LABEL)
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PODTRZYMANIE_MOC, RR_PODTRZYMANIE_MOC_LABEL)
+            MDRoundFlatButton:
+                text: "update"
+                user_font_size: "35dp"
+                on_press: root.upgrade_value(RR_PODTRZYMANIE_CZAS_LATO, RR_PODTRZYMANIE_CZAS_LATO_LABEL)

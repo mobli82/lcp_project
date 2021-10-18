@@ -1,0 +1,87 @@
+<BoilerMonitorView>:
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDBoxLayout:
+            MDLabel:    
+                text: "Conected OK"
+                id: connection_status
+                font_style: "Button"
+                size_hint_y: 1
+                halign: "auto"
+                theme_text_color: "Custom"
+                text_color: 0, 1, 0, 1
+
+        MDBoxLayout:
+            MDBoxLayout
+                orientation: "vertical"
+                size_hint_x: .6
+                padding: 50, 0, 0, 0
+                MDLabel:
+                    font_style: "Body1"
+                    text: "BOILER TEMPERATURE"
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "BOILERS RETURN"
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "FEEDER"
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "CWU"
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "CO"
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 1, 1
+            
+            # temperatures
+            MDBoxLayout
+                orientation: "vertical"
+                MDLabel:
+                    font_style: "Body1"
+                    text: "0"
+                    id: BOILER_TEMPERATURE    
+                    halign: 'left'
+                    valign: 'middle'
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 0, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "1"
+                    id: BOILERS_RETURN
+                    halign: 'left'
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 0, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "2"
+                    id: FEEDER    
+                    halign: 'left'
+                    valign: 'middle'
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 0, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "3"
+                    id: CWU    
+                    halign: 'left'
+                    valign: 'middle'
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 0, 1
+                MDLabel:
+                    font_style: "Body1"
+                    text: "4"
+                    id: CO    
+                    halign: 'left'
+                    valign: 'middle'
+                    theme_text_color: "Custom"
+                    text_color: 0, 1, 0, 1

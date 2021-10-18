@@ -60,14 +60,15 @@ def check_temparatures():
         temp_feeder:int [returns feeder temperature]
         temperatures:int [returns CWU and RETURN temperatures]
     """
-    boiler, feeder = SENSORS[0], SENSORS[2]
-    temperatures, temp_range = json_data_validator()
-
-    temp_boiler = str(temp_range[boiler])
-    temp_feeder = str(temp_range[feeder])
+    
+    _ , temps = json_data_validator()
 
     # print(temp_boiler, temp_feeder)
     
-    # print(temperatures)
+    boilter_temp = temps[SENSORS[0]]
+    boilter_return = temps[SENSORS[1]]
+    feeder = temps[SENSORS[2]]
+    cwu = temps[SENSORS[5]]
+    co = temps[SENSORS[8]]
 
-    return temp_boiler, temp_feeder, temperatures
+    return boilter_temp, boilter_return, feeder, cwu, co
