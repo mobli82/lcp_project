@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 
 SENSORS = ['BOILER', 'BOILERS_RETURN', 'FEEDER', ' ', ' ', 'CWU', ' ', ' ', 'CO', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
@@ -63,7 +64,7 @@ def check_temparatures():
     
     _ , temps = json_data_validator()
 
-    # print(temp_boiler, temp_feeder)
+    #print(temp_boiler, temp_feeder)
     
     boilter_temp = temps[SENSORS[0]]
     boilter_return = temps[SENSORS[1]]
@@ -72,3 +73,32 @@ def check_temparatures():
     co = temps[SENSORS[8]]
 
     return boilter_temp, boilter_return, feeder, cwu, co
+
+def read_config(ip)-> str:
+    try:
+        response = requests.get('http://192.168.1.2/config.txt')
+    
+    except requests.exceptions.HTTPError as err_http:
+        print('Http error', err_http)
+    
+    except requests.exceptions.ConnectionError as err_conect:
+        print('Connecton error', err_conect)
+
+    print(response.status_code)
+
+    data = response.text
+    
+    return data
+
+def find_value(data:str, record)-> tuple:
+  
+    pattern = f'(\W)+({record})+(\D)+[a-zA-Z0-9]+'
+    
+    result = re.findall(pattern, data)
+
+    search_result = re.search(pattern, data)
+
+    position_left, position_right = search_result.span()
+    # print(position_left, position_right)
+    
+    data = data[:position_left] + f'\n{record}=13' + data[position_right:]

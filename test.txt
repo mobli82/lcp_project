@@ -1,0 +1,279 @@
+#Konfiguracja sieci:
+#Adres IP (dla automatycznej konfiguracji sieci piszemy: NET_IP=auto):
+NET_IP=192.168.1.2
+#Adres MAC (w hex):
+NET_MAC=DEADBEEFFEED 
+#Adresy pozostale
+NET_BRAMA=192.168.1.1
+NET_MASKA=255.255.255.0
+NET_DNS=192.168.1.1
+
+Parametry dmuchawy:
+DM_OFFSET = 0
+DM_INWERSJA_PWM = 0
+DM_MODULACJA = 0
+#jesli 0 - brak detektora lub detektor przed bezpiecznikiem od peryferiow
+DETEKTOR_TESTUJE_BEZPIECZNIK=1
+
+#algorytm regulacji mocy dmuchawy
+# 0 stary, 1 nowy (zakres od 30 do 75% - powyzej blad/spada moc)
+DM_TYP=1
+
+# zmiana czasu na zimowy
+#RTC_ZIMA=1
+
+#ustawianie daty/czasu w RTC - uruchamiac jednorazowo
+#RTC=2017-04-07 12:13:14
+#RTC_DATA=2017-04-07
+#RTC_CZAS=12:13:14
+
+# temperatura zewnetrzna auto przejscia CO w tryb lato
+AUTOLATO_TEMP = 0
+# histereza powrotu CO do trybu zima 1,5deg
+AUTOLATO_HISTEREZA = 15
+# temperatura dla twew auto przejsca CO w tryb lato
+AUTOLATO_TWEW = 0
+# dodatkowe tryb pracy autolato 
+AUTOLATO_TRYB = 0
+# poza przejsciem w tryb lato wylaczamy calkowicie piec
+#AUTOLATO_TRYB = WYL_ALGO
+
+Parametry modulacji (gdy DM_MODULACJA = 1):
+#DM_ROZRUCH_CZAS =
+#DM_ROZRUCH_MOC =
+#DM_PLUS_CZAS =
+#DM_PLUS_MOC =
+#DM_DOPALANIE_CZAS =
+#DM_DOPALANIE_MOC =
+#DM_TLO_MOC =
+
+Parametry trybu zasypowego:
+ZASYPOWY_MOC=30
+
+Przypisanie wszystkich czujnikow z ecoal do sterownika
+T_MAPUJ_Z_ECOAL=1
+lub
+T_MAPUJ_Z_BRULI=1
+
+#przyklad mapowania czujnika dallas
+# identyfikatory czujnikow dostepne pod adresem
+# http://adres_ip_lucjana/dallas
+TPIEC=DALLAS[28BDBBF563200142]
+TCWU =DALLAS[284B82B063200194]
+TPOWROT =DALLAS[28A7C9CE5C200165]
+TPODAJNIK=DALLAS[286C68C85D20015E]
+T1=DALLAS[2830C40B642001FE]
+
+#DALLAS 00 ID:2830C40B642001FE p:1 o:0 m:0 e:0 t:318
+#DALLAS 01 ID:286C68C85D20015E p:1 o:0 m:0 e:0 t:256
+#DALLAS 02 ID:28BDBBF563200142 p:1 o:0 m:0 e:0 t:396
+#DALLAS 03 ID:284B82B063200194 p:1 o:0 m:0 e:0 t:368
+#DALLAS 04 ID:28A7C9CE5C200165 p:1 o:0 m:0 e:0 t:393
+
+# mapowanie czujnika KTY81-210
+# dla analogowego wejscia A1
+# TPIEC = KTY81[1]
+
+# mapowanie modulu termopary
+#TSPALINY = MAX31855[0]
+#TSPALINY = MAX6675[0]
+# zmapowanie na pinie CS=48 i z wlaczonym filtrowaniem
+#TSPALINY = MAX6675[48.1]
+# mapowanie czujnika poziomu zasobnika np.:
+#T4=SR04T[]
+
+#przyklad dodania offsetu -10.0 deg do T1
+#OFFSET_T1=-100
+
+zabezpieczenie przed cofaniem sie zaru
+jesli TPODAJNIK wzrosnie powyzej T_MAX, uruchamia sie podajnik 
+na czas wyrzutu paliwa z podajnika 5min. i uruchamia sie alarm
+PODAJNIK_CZAS_WYRZUTU = 1
+PODAJNIK_T_MAX = 60
+jesli TPODAJNIK wzrosnie powyzej T_WYSOKA,
+uruchamia sie cykle 30s (* max ilosc powtorek jesli ustawiono) podnoszenia zaru
+PODAJNIK_CZAS_PODNOSZENIA = 30
+PODAJNIK_T_WYSOKA_POWTORKI = 0
+PODAJNIK_T_WYSOKA = 50
+
+#parametry podajnika tlokowego
+#czasy podawania w ilosci cykli
+#PODAJNIK_TLOKOWY=1
+#czas pelnego ruchu tloka w sekundach
+#TLOK_CZAS_CYKLU=400
+
+# glebokosc pustego zasobnika w cm odczyt z czujnika SR04T
+#PODAJNIK_GLEBOKOSC = 0
+
+#czas w sekundach potrzebny do oproznienia peÅnego zasobnika
+PODAJNIK_CZAS_DO_OPROZNIENIA = 69000
+#aktualny czas pozostaly do oproznienia zasobnika w sekundach
+#UWAGA! po uruchomieniu zliczamy od tej wartosci
+# (domyslnie 50% zasobnika) i tracimy poziom zasobnika!!
+# poziom zasobnika ustawiac najlepiej przez WWW
+#PODAJNIK_CZAS_PODAJNIKA = 34500
+#procent ponizej ktorego ma wystapic alarm pustego zasobnika
+#PODAJNIK_ALARM_MIN=15
+#staÅa zalezna od opaÅu w g./min.
+PODAJNIK_PREDKOSC_PODAWANIA = 240
+
+zabezpieczenie przed zbyt wysoka temperatura pieca
+PIEC_T_MAX = 80
+
+temperatura zalaczenia pomp
+PIEC_T_MIN = 40
+po spadku temperatury ponizej 45 generowany jest alarm
+#PIEC_ALARM_T_MIN = 45
+
+tryb pracy pieca RECZNY,AUTO
+PIEC_TRYB = AUTO
+jesli piec ma automatycznie startowac po uruchomieniu - ustawiamy AUTO
+w trybie recznym mozna wlaczac (1) lub wylaczac urzadzenia (0)
+#OUT_PODAJNIK=1
+#OUT_POMPACO=0
+#OUT_POMPACWU=0
+#OUT_POMPACWU2=0
+#OUT_POMPACYRK=0
+#moc wentylatora 50%:
+#OUT_WENTYLATOR=50
+
+algorytm pracy palnika - ECOAL,RR,RRM,RRM2,ZASYPOWY,WYLACZONY,...
+PIEC_ALGORYTM = RR
+PIEC_ZADANA = 50
+uwaga histereza pieca * 0.1deg
+PIEC_HISTEREZA = 10
+
+#zadana dla regulatora pokojowego
+#TWEW_ZADANA=22
+#o ile ma zostac obnizona zadana na piecu 
+#gdy osiagniemy TWEW_ZADANA - ponizej o 5.0 deg.
+#TWEW_CO_OBNIZONA=50
+
+parametry algorytmu RR, czas podtrzymania w minutach, reszta w sekundach:
+RR_PODTRZYMANIE_CZAS = 30
+RR_PODTRZYMANIE_PODANIE = 2
+RR_PODTRZYMANIE_POSTOJ = 60
+RR_PODTRZYMANIE_MOC = 80
+# gdy > 0 i sterownik jest w trybie lato korzystamy z czasu lato:
+RR_PODTRZYMANIE_CZAS_LATO = 0
+RR_PRACA_PODANIE=13
+RR_PRACA_POSTOJ = 75
+RR_PRACA_MOC = 100
+
+# 1 - wlaczone tlo, 2 - dopalanie
+RRM_TLO_WLACZONE=0
+RRM_TLO_MOC=20
+RRM_TLO_CZAS_PODANIE=10
+# w min.
+RRM_TLO_CZAS=15
+#jesli tlo podbije TPIEC o 15deg ponad zadana przechodzimy w podtrzymanie i wylaczamy tlo.
+#RRM_MAX_PRZEBICIE_TLO=15
+#prog t.zew. dla wylaczenia tla np. +2deg.
+#RRM_T_WYL_TLO = 2
+# dopalanie 150s 30%
+RRM_DOPALANIE_MOC=30
+RRM_DOPALANIE_CZAS=150
+
+# opcje naweglania - po 5 cyklach podtrzymania wejscie w grzanie
+# powoduje podanie paliwa przez 60s. (max 240s)
+#RRM_NAWEGLANIE_CYKL = 5
+#RRM_NAWEGLANIE = 60
+# opcja opoznienia podania paliwa po przejsciu w grzanie 
+# podajemy 30s pozniej
+#RRM_OPOZNIENIE_PODANIA = 30
+
+# 1 - tryb wielomocowy dla RRM2
+RRM_WIELE_MOCY=0
+# moce od 0 (najmniejsza) do 5 (najwieksza)
+# moc 0 domyslna
+RRW_PODANIE0=10
+RRW_POSTOJ0=100
+RRW_NADMUCH0=30
+# moc 1
+RRW_PODANIE1=10
+RRW_POSTOJ1= 50
+RRW_NADMUCH1=40
+RRW_HISTEREZA1=20
+
+tryb pracy pompy co (ECOAL,BRULI,ZIMA,LATO)
+CO_TRYB = ZIMA
+algorytm pracy pomy CO (CIAGLY,CYKLICZNY)
+CO_ALGORYTM = CIAGLY
+# dla trybu cyklicznego
+CO_CZAS_WLACZ=30
+CO_CZAS_WYLACZ=30
+
+#przyklad termostatu dla czujnika TWEW
+# zadana 20.0 histereza 1.0, dla pompy CO
+TERMOSTAT1_ZADANA = 20
+TERMOSTAT1_HISTEREZA = 10
+TERMOSTAT1_CZUJNIK = TWEW
+TERMOSTAT1_WYJSCIE = CO
+
+tryb pracy pompy cwu (ECOAL,BRULI,WLACZ,WYLACZ,MIESZANIE)
+CWU_TRYB = WYLACZ
+algorytm pracy pomy cwu (CIAGLY,CYKLICZNY)
+CWU_ALGORYTM = CIAGLY
+# uzyj priorytetu CWU wzgledem CO - WLACZ,WYLACZ
+CWU_PRIORYTET = WYLACZ
+CWU_ZADANA=40
+CWU_HISTEREZA = 0
+zabezpieczenie przed zbyt wysoka t.cwu gdy CWU_T_MAX > 0
+CWU_T_MAX = 0
+
+CWU2_TRYB = WYLACZ
+CWU2_ALGORYTM = CIAGLY
+CWU2_ZADANA = 0
+CWU2_HISTEREZA = 0
+CWU2_CZUJNIK = TCWU
+#tryb roznicowy z uzyciem histerezy miedzy czujnikami
+#CWU2_CZUJNIKR = T3
+
+# praca pompki cyrkulacyjnej cwu: algorytm CIAGLY,CYKLICZNY,WYLACZONY
+CYRKULACJA_ALGORYTM = WYLACZONY
+# minimalna temperatura CWU przy ktorej bedzie dzialac cyrkulacja
+CYRKULACJA_TMIN = 40
+# parametry dla trybu cyklicznego w minutach:
+CYRKULACJA_CZAS_WLACZ = 1
+CYRKULACJA_CZAS_WYLACZ = 10
+
+#harmonogram cyrkulacji
+#*,PO,WT,SR,CZ,PT,SO,ND
+#w poniedzialek 6-8 i 10-12
+PROG_CYRK_PO=6:0-8:0
+PROG_CYRK_PO=10:00-12:00
+#we wszystkie dni tygodnia od 18:00-24:00
+PROG_CYRK_*=18:00-
+
+#krzywa grzania dla 4D (uwaga min.30 max 60):
+KRZYWA_GRZANIA-30=55
+KRZYWA_GRZANIA-20=55
+KRZYWA_GRZANIA-10=48
+KRZYWA_GRZANIA-0 =45
+KRZYWA_GRZANIA+5 =45
+KRZYWA_GRZANIA+15=30
+
+# tryb pracy: WYLACZONY,ZADANA,KRZYWA (nastawa z krzywej grzania)
+ZAWOR4D-TRYB=WYLACZONY
+#jesli TRYB ZADANA - to ponizej ustawiamy wartosc
+ZAWOR4D-ZADANA=0
+#ZAWOR4D parametry 120s pelne otwarcie, krok 2s,pomiar co 50s:
+ZAWOR4D-CZAS_OTWARCIA = 120
+ZAWOR4D-CZAS_KROK = 2
+ZAWOR4D-CZAS_POMIARU = 50
+# ktory czujnik polozony jest za zaworem i nalezy uzyc go do pomiaru
+ZAWOR4D-CZUJNIK=T1
+# histereza na + i na - od zadanej przy ktorej ma dzialac korekcja zaworu (w 0,1deg)
+ZAWOR4D-HISTEREZA=0
+# o ile deg. ma byc obnizona tzadana za zaworem jesli A6 zwarte do GND
+ZAWOR4D-OBNIZONA=3
+#pozycja startowa dla zaworu w % po uruchomieniu
+#ZAWOR4D-PRESET=0
+
+#autoryzacja www
+#0 - brak, 1 - autoryzacja strony, 2 - autoryzacja api, 3 - autoryzacja api i strony
+#WWW_AUTH=0
+#login i haslo zakodowane w base64 np.: user:admin
+#WWW_HASLO=dXNlcjphZG1pbg==
+
+koniec pliku
