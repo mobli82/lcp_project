@@ -27,7 +27,7 @@ class BoilerMonitorView(MDBoxLayout):
     def update_temps(self, dt):
         bolier_temp, boiler_return_temp, feeder_temp, cwu_temp, co_temp = check_temparatures()
         
-        print(BoilerMonitorView().ids)
+        # print(BoilerMonitorView().ids)
         boiler_temperature = self.ids.BOILER_TEMPERATURE
         boiler_return = self.ids.BOILERS_RETURN
         feeder = self.ids.FEEDER
